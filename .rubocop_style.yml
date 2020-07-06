@@ -1,0 +1,119 @@
+# Allow private to be inlined in method definitions.
+Style/AccessModifierDeclarations:
+  Enabled: false
+
+# Mixing the styles looks just silly.
+Style/HashSyntax:
+  EnforcedStyle: ruby19_no_mixed_keys
+
+# String#% is by far the least verbose and only object oriented variant.
+Style/FormatString:
+  EnforcedStyle: percent
+
+# This cop enforces the use of consistent method names from the Enumerable module
+Style/CollectionMethods:
+  Enabled: true
+
+# Either allow this style or don't. Marking it as safe with parenthesis
+# is silly. Let's try to live without them for now.
+Style/ParenthesesAroundCondition:
+  AllowSafeAssignment: false
+
+# A specialized exception class will take one or more arguments and construct the message from it.
+# So both variants make sense.
+Style/RaiseArgs:
+  Enabled: false
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+# Fail is an alias of raise. Avoid aliases, it's more cognitive load for no gain.
+# The argument that fail should be used to abort the program is wrong too,
+# there's Kernel#abort for that.
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Style/SymbolArray:
+  Enabled: false
+# do / end blocks should be used for side effects,
+# methods that run a block for side effects and have
+# a useful return value are rare, assign the return
+# value to a local variable for those cases.
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+
+# Big numbers with underscore started from one thousand
+Style/NumericLiterals:
+  Exclude:
+    - 'config/initializers/**/*'
+    - 'config/puma.rb'
+    - 'config.ru'
+  MinDigits: 4
+
+# This cop enforces consistency between 'return nil' and 'return'
+Style/ReturnNil:
+  Enabled: true
+
+# Check with yard instead.
+Style/Documentation:
+  Enabled: false
+
+# Style preference
+Style/MethodDefParentheses:
+  Enabled: false
+
+# Frozen Literals
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+# Quotes
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Allow us to use `alias_method` in class body
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+# Allow for Trailblazer naming convention
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Allow us to use empty `case`
+Style/EmptyCaseCondition:
+  Enabled: false
+
+Style/LambdaCall:
+  Enabled: false
+
+# Prefer `%r{}` over `//`. It better plays with slashes
+Style/RegexpLiteral:
+  EnforcedStyle: percent_r
+
+# Wrap complex conditions in ternary expressions with parentheses
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses_when_complex
+
+Style/BlockDelimiters:
+  Exclude:
+    - "spec/**/*"
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true

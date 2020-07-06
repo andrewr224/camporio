@@ -1,0 +1,17 @@
+# Forbid short names for block arguments
+Naming/BlockParameterName:
+  AllowNamesEndingInNumbers: false
+
+# Forbid short names for method arguments
+Naming/MethodParameterName:
+  MinNameLength:             1
+  AllowNamesEndingInNumbers: false
+
+# Forbid numbers in variable names
+Naming/VariableNumber:
+  EnforcedStyle: non_integer
+
+# Same name of instance variable and memoization method
+Naming/MemoizedInstanceVariableName:
+  Exclude:
+    - 'app/*/concerns/**/*.rb'

@@ -1,0 +1,38 @@
+# Too short methods lead to extraction of single-use methods, which can make
+# the code easier to read (by naming things), but can also clutter the class
+Metrics/MethodLength:
+  Max: 10
+
+# The guiding principle of classes is SRP, SRP can't be accurately measured by LoC
+Metrics/ClassLength:
+  Max: 100
+
+Metrics/CyclomaticComplexity:
+  Enabled: true
+
+# Avoid writing of large modules
+Metrics/ModuleLength:
+  Max: 100
+
+# Avoid excessive block nesting
+Metrics/BlockNesting:
+  Max: 3
+
+# Create separate methods/services to be used within block
+Metrics/BlockLength:
+  Max:             3
+  Exclude:
+    - 'app/admin/**/*'
+    - 'config/**/*'
+    - 'spec/**/*'
+  ExcludedMethods:
+    - included
+    - class_methods
+    - class_eval
+    - define_method
+    - instance_eval
+
+# Avoid parameter lists longer than three or four parameters
+# https://github.com/bbatsov/ruby-style-guide#too-many-params
+Metrics/ParameterLists:
+  Max: 4

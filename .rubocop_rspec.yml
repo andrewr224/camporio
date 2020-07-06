@@ -1,0 +1,35 @@
+RSpec/ExpectInHook:
+  Enabled: false
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+# === System specs ===================================================================== #
+RSpec/DescribeClass:
+  Exclude:
+    - "spec/system/**/*"
+
+RSpec/LetSetup:
+  Exclude:
+    - "spec/system/**/*"
+
+RSpec/NestedGroups:
+  Exclude:
+    - "spec/system/**/*"
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - "spec/system/**/*"
+
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/system/**/*"
+
+Capybara/FeatureMethods:
+  EnabledMethods: [scenario]

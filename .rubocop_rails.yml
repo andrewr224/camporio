@@ -1,0 +1,37 @@
+# ActiveSupport provides semantically great methods
+Rails/ActiveSupportAliases:
+  Enabled: false
+
+# Allow explicitly defined actions under `only/except keys` with controllers
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+Rails/SafeNavigation:
+  ConvertTry: false
+
+# We validate through Reform gem, thus this is pointless
+Rails/SkipsModelValidations:
+  Enabled: false
+
+# Correct environment check typos
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - test
+    - production
+    - staging
+
+Rails/HasAndBelongsToMany:
+  Exclude:
+    - app/models/role.rb
+
+Rails/FilePath:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+# Allow Devise Invitable method
+Rails/DynamicFindBy:
+  Whitelist:
+    - find_by_invitation_token

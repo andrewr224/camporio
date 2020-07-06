@@ -1,0 +1,110 @@
+# Commonly used screens these days easily fit more than 80 characters.
+Layout/LineLength:
+  Max: 90
+  Exclude:
+    - 'config/initializers/*'
+  IgnoredPatterns: ['\A#']
+
+# Most readable form.
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle:      table
+
+# Add empty line after all guard clauses
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
+
+# This cop checks the indentation of the method name part
+# in method calls that span more than one line.
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+# Check space around operators
+Layout/SpaceAroundOperators:
+  Enabled: true
+
+# This cop checks for extra/unnecessary whitespace
+Layout/ExtraSpacing:
+  ForceEqualSignAlignment: true
+
+# Multi-line expressions with operators are indented with 2 spaces
+Layout/MultilineOperationIndentation:
+  EnforcedStyle:    indented
+  IndentationWidth: 2
+
+# Check if tabulations throughout the project are the same: 2 spaces
+Layout/IndentationStyle:
+  IndentationWidth: 2
+
+# Order of building models
+Layout/ClassStructure:
+  Enabled: true
+  Include:
+    - 'app/models/**/*'
+    - 'lib/models/**/*'
+  Categories:
+    modules:
+      - extend
+      - include
+      - prepend
+    macroses:
+      - acts_as_token_authenticatable
+      - acts_as_tenant
+      - devise
+      - rolify
+      - scopify
+      - resourcify
+    associations:
+      - belongs_to
+      - has_one
+      - has_many
+      - has_one_attached
+      - has_many_attached
+    nested_attributes:
+      - accepts_nested_attributes_for
+    validations:
+      - validates
+      - validates_uniqueness_to_tenant
+      - validate
+    hooks:
+      - before_validation
+      - before_save
+      - before_create
+      - before_update
+      - before_destroy
+      - after_validation
+      - after_save
+      - after_create
+      - after_update
+      - after_destroy
+    attributes:
+      - attr_accessor
+      - attr_reader
+      - attr_writer
+      - enum
+    delegations:
+      - delegate
+    scopes:
+      - scope
+  ExpectedOrder:
+    - modules
+    - constants
+    - macroses
+    - associations
+    - nested_attributes
+    - validations
+    - hooks
+    - attributes
+    - delegations
+    - scopes
+    - public_class_methods
+    - initializer
+    - public_methods
+    - protected_methods
+    - private_methods
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
