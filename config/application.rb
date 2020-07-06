@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -12,6 +12,17 @@ module Camporio
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+
+    config.generators do |g|
+      g.template_engine :haml
+      g.helper          false
+      g.test_framework  :rspec,
+                        helper_specs:    false,
+                        routing_specs:   false,
+                        request_specs:   false,
+                        model_spec:      false,
+                        controller_spec: false
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
