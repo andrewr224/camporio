@@ -6,34 +6,34 @@ class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
 
   def index
-    @boards = Board.all
-    @board = Board.new
+    @boards = Board.all.order(created_at: :desc)
+    @board  = Board.new
   end
 
-  # GET /boards/1
-  # GET /boards/1.json
   def show; end
 
-  # GET /boards/1/edit
   def edit; end
 
-  # POST /boards
-  # POST /boards.json
   def create
-    board = Board.create(board_params)
+    @board = Board.new(board_params)
 
-    cable_ready["timeline"].insert_adjacent_html(
-      selector: "#timeline",
-      position: "afterbegin",
-      html:     render_to_string(partial: "board", locals: { board: board })
-    )
+    if @board.save
+      cable_ready["timeline"].insert_adjacent_html(
+        selector: "#timeline",
+        position: "afterbegin",
+        html:     render_to_string(partial: "board", locals: { board: @board })
+      )
 
-    cable_ready.broadcast
-    redirect_to boards_path
+      cable_ready.broadcast
+
+      redirect_to boards_path, notice: "Board was successfully created."
+    else
+      @boards = Board.all.order(created_at: :desc)
+
+      render :index
+    end
   end
 
-  # PATCH/PUT /boards/1
-  # PATCH/PUT /boards/1.json
   def update
     respond_to do |format|
       if @board.update(board_params)
@@ -46,8 +46,6 @@ class BoardsController < ApplicationController
     end
   end
 
-  # DELETE /boards/1
-  # DELETE /boards/1.json
   def destroy
     @board.destroy
     respond_to do |format|
@@ -58,7 +56,6 @@ class BoardsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_board
     @board = Board.find(params[:id])
   end

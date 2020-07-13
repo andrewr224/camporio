@@ -9,6 +9,6 @@
     .card-text
       = board.description
 
-    = link_to "#", class: "card-link", data: { reflex: "click->PostsReflex#like", id: board.id } do
+    = link_to "#", class: "card-link", data: { reflex: "click->BoardsReflex#like", id: board.id } do
       Like
-      = tag.span board.likes_count, id: "post-#{board.id}-likes"
+      = tag.span "(#{board.likes_count})", id: "board-#{board.id}-likes"
