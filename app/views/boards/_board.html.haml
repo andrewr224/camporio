@@ -1,0 +1,14 @@
+.card
+  .card-body
+    .card-title
+      = board.name
+      %small
+        = time_ago_in_words board.created_at
+        ago
+
+    .card-text
+      = board.description
+
+    = link_to "#", class: "card-link", data: { reflex: "click->PostsReflex#like", id: board.id } do
+      Like
+      = tag.span board.likes_count, id: "post-#{board.id}-likes"

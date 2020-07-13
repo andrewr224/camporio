@@ -1,40 +1,35 @@
+# frozen_string_literal: true
+
 class BoardsController < ApplicationController
+  include CableReady::Broadcaster
+
   before_action :set_board, only: [:show, :edit, :update, :destroy]
 
-  # GET /boards
-  # GET /boards.json
   def index
     @boards = Board.all
+    @board = Board.new
   end
 
   # GET /boards/1
   # GET /boards/1.json
-  def show
-  end
-
-  # GET /boards/new
-  def new
-    @board = Board.new
-  end
+  def show; end
 
   # GET /boards/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /boards
   # POST /boards.json
   def create
-    @board = Board.new(board_params)
+    board = Board.create(board_params)
 
-    respond_to do |format|
-      if @board.save
-        format.html { redirect_to @board, notice: 'Board was successfully created.' }
-        format.json { render :show, status: :created, location: @board }
-      else
-        format.html { render :new }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
-      end
-    end
+    cable_ready["timeline"].insert_adjacent_html(
+      selector: "#timeline",
+      position: "afterbegin",
+      html:     render_to_string(partial: "board", locals: { board: board })
+    )
+
+    cable_ready.broadcast
+    redirect_to boards_path
   end
 
   # PATCH/PUT /boards/1
@@ -42,7 +37,7 @@ class BoardsController < ApplicationController
   def update
     respond_to do |format|
       if @board.update(board_params)
-        format.html { redirect_to @board, notice: 'Board was successfully updated.' }
+        format.html { redirect_to @board, notice: "Board was successfully updated." }
         format.json { render :show, status: :ok, location: @board }
       else
         format.html { render :edit }
@@ -56,19 +51,20 @@ class BoardsController < ApplicationController
   def destroy
     @board.destroy
     respond_to do |format|
-      format.html { redirect_to boards_url, notice: 'Board was successfully destroyed.' }
+      format.html { redirect_to boards_url, notice: "Board was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_board
-      @board = Board.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def board_params
-      params.fetch(:board, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_board
+    @board = Board.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def board_params
+    params.require(:board).permit(:name, :description)
+  end
 end

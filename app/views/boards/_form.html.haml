@@ -1,11 +1,7 @@
 = form_with(model: board, local: true) do |form|
-  - if board.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(board.errors.count, "error")
-        prohibited this board from being saved:
-      %ul
-        - board.errors.full_messages.each do |message|
-          %li= message
+  .form-group
+    = form.text_field :name, placeholder: "Enter board name"
+  .form-group
+    = form.text_area :description, placeholder: "Enter board description"
   .actions
     = form.submit
