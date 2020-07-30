@@ -1,24 +1,5 @@
-# README
+# Camporio!
+## The best website you've never used!
+### And you shouldn't, really
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[digital ocean link](http://139.59.137.228/)
